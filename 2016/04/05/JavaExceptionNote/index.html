@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Java异常概述 | Denial`s Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1:Java异常结构图
+2:异常父类Throwable以及子类
+有两个重要的子类：Exception和Error,二者都是Java异常处理的重要子类，他们都包含大量的子异常类。Exception
+程序本身可以处理的异常，并可以通过try/catch块捕获处理的异常eg:RuntimeException、NullPointerException、ArrayIndexOutOfBoundExcepti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java异常概述">
+<meta property="og:url" content="http://yoursite.com/2016/04/05/JavaExceptionNote/index.html">
+<meta property="og:site_name" content="Denial`s Notes">
+<meta property="og:description" content="1:Java异常结构图
+2:异常父类Throwable以及子类
+有两个重要的子类：Exception和Error,二者都是Java异常处理的重要子类，他们都包含大量的子异常类。Exception
+程序本身可以处理的异常，并可以通过try/catch块捕获处理的异常eg:RuntimeException、NullPointerException、ArrayIndexOutOfBoundExcepti">
+<meta property="og:image" content="http://yoursite.com/img/JavaException.jpg">
+<meta property="og:updated_time" content="2016-05-14T06:24:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java异常概述">
+<meta name="twitter:description" content="1:Java异常结构图
+2:异常父类Throwable以及子类
+有两个重要的子类：Exception和Error,二者都是Java异常处理的重要子类，他们都包含大量的子异常类。Exception
+程序本身可以处理的异常，并可以通过try/catch块捕获处理的异常eg:RuntimeException、NullPointerException、ArrayIndexOutOfBoundExcepti">
+<meta name="twitter:image" content="http://yoursite.com/img/JavaException.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Denial`s Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Denial Liu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/NoteByTheWay">随笔</a></li>
+				        
+							<li><a href="/instagram">相册</a></li>
+				        
+							<li><a href="/Java">Java</a></li>
+				        
+							<li><a href="/Nginx">Nginx</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/denialLiu/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/2640567903/home?wvr=5" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-jiong-13-7" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/denial.lbb@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/GitBlog/" style="font-size: 10px;">GitBlog</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Thread/" style="font-size: 10px;">Java Thread</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Nginx-limit/" style="font-size: 10px;">Nginx limit</a> <a href="/tags/Nginx-rewrite/" style="font-size: 10px;">Nginx rewrite</a> <a href="/tags/Runable/" style="font-size: 10px;">Runable</a> <a href="/tags/Theme/" style="font-size: 10px;">Theme</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/主题/" style="font-size: 10px;">主题</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.github.io/">Litten`s Blog</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://dasb.me/">GitBlog`s Note</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.w3school.com.cn/tags/html_ref_byfunc.asp">Html Tags</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Denial Liu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/1.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Denial Liu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/NoteByTheWay">随笔</a></li>
+		        
+					<li><a href="/instagram">相册</a></li>
+		        
+					<li><a href="/Java">Java</a></li>
+		        
+					<li><a href="/Nginx">Nginx</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/denialLiu/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/2640567903/home?wvr=5" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-jiong-13-7" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/denial.lbb@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JavaExceptionNote" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/05/JavaExceptionNote/" class="article-date">
+  	<time datetime="2016-04-05T13:03:15.000Z" itemprop="datePublished">2016-04-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java异常概述
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exception/">Exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Java异常结构图"><a href="#1-Java异常结构图" class="headerlink" title="1:Java异常结构图"></a>1:Java异常结构图</h2><p><img src="/img/JavaException.jpg" alt="异常结构"></p>
+<h2 id="2-异常父类Throwable以及子类"><a href="#2-异常父类Throwable以及子类" class="headerlink" title="2:异常父类Throwable以及子类"></a>2:异常父类Throwable以及子类</h2><ul>
+<li>有两个重要的子类：<code>Exception</code>和<code>Error</code>,二者都是Java异常处理的重要子类，他们都包含大量的子异常类。<h3 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h3></li>
+<li>程序本身可以处理的异常，并可以通过try/catch块捕获处理的异常<code>eg:RuntimeException、NullPointerException、ArrayIndexOutOfBoundException等等</code><h3 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h3></li>
+<li>程序无法处理的错误，表示程序运行中出现的比较严重的问题，大部分与代码编执行没有关系，也不能被捕获处理<code>eg:OutOfMemoryError、NoClassDefFoundError等等</code><a id="more"></a>
+<h2 id="3-按照编译器是否强制要求处置异常分类"><a href="#3-按照编译器是否强制要求处置异常分类" class="headerlink" title="3:按照编译器是否强制要求处置异常分类"></a>3:按照编译器是否强制要求处置异常分类</h2><h3 id="可查的异常-checked-exceptions"><a href="#可查的异常-checked-exceptions" class="headerlink" title="可查的异常(checked exceptions)"></a>可查的异常(checked exceptions)</h3></li>
+<li>除了RuntimeException及其子类以外，其他的Exception类及其子类都属于可查异常。这种异常的特点是Java编译器会检查它，也就是说，当程序中可能出现这类异常，要么用try-catch语句捕获它，要么用throws子句声明抛出它，否则编译不会通过。</li>
+</ul>
+<h3 id="不可查的异常-unchecked-exceptions）"><a href="#不可查的异常-unchecked-exceptions）" class="headerlink" title="不可查的异常(unchecked exceptions）"></a>不可查的异常(unchecked exceptions）</h3><ul>
+<li>RuntimeException及其子类和Error,编译过程中不去处理，仍然可以正常编译通过。</li>
+</ul>
+<h2 id="4-Exception具体分类"><a href="#4-Exception具体分类" class="headerlink" title="4:Exception具体分类"></a>4:Exception具体分类</h2><h3 id="运行时异常类似可查异常"><a href="#运行时异常类似可查异常" class="headerlink" title="运行时异常类似可查异常"></a>运行时异常<code>类似可查异常</code></h3><ul>
+<li>RuntimeException类及其子类的异常<code>如NullPointerException、IndexOutOfBoundsExceptiond等</code>，这种异常一般属于不可检查异常，不影响编译，代码处理过程中可以选择性的处理，但还是建议尽量避免类似的异常发生，中断程序。<h3 id="非运行异常类似不可查异常"><a href="#非运行异常类似不可查异常" class="headerlink" title="非运行异常类似不可查异常"></a>非运行异常<code>类似不可查异常</code></h3></li>
+<li>也叫做编译异常RuntimeException之外的异常<code>如IOException、SQLException以及用户自定义的异常</code>若不处理，程序无法编译通过。</li>
+</ul>
+<h2 id="5-异常处理"><a href="#5-异常处理" class="headerlink" title="5:异常处理"></a>5:异常处理</h2><h3 id="正常处理方式-具体使用不过多赘述"><a href="#正常处理方式-具体使用不过多赘述" class="headerlink" title="正常处理方式(具体使用不过多赘述)"></a>正常处理方式(具体使用不过多赘述)</h3><ul>
+<li>try{}catch{}</li>
+<li>try{}catch{}finally{}无论有无异常finally代码块都会被执行</li>
+<li>try{}finally{}也是可以组合使用的但是catch{}finally{}不可以<br><code>注意:</code> 在继承关系中，子类覆盖父类的方法，抛出异常的范围不能比父类更宽泛异常的使用.</li>
+</ul>
+<h3 id="异常链"><a href="#异常链" class="headerlink" title="异常链"></a>异常链</h3><ul>
+<li><p>可以使用继承throwable的initCause来进行异常类型转化，已一个优美可控的输出来处理异常<br><code>MyException</code>提示性异常可以直接抛到前端用户查看<br><code>Exception</code>除MyException之外的异常不可以直接抛到前端不友好，通过initCause()方法将此类异常吃掉转化成MyException自定义用户可接受的信息，将实际异常放到了异常的CauseBy部分便于排查问题ßß    </p>
+</li>
+<li><p>举个栗子</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestException</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String response=<span class="string">"JsonStr"</span></span><br><span class="line">            JSONObject jsonResponse = JSONObject.parseObject(response);</span><br><span class="line">            <span class="keyword">if</span> (!jsonResponse.getBoolean(<span class="string">"success"</span>)) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> MyException(<span class="string">"友好提示信息"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MyException me) &#123;</span><br><span class="line">            <span class="keyword">throw</span> me;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            Exception me = <span class="keyword">new</span> MyException(<span class="string">"转化成的友好提示信息"</span>);</span><br><span class="line">            me.initCause(e);</span><br><span class="line">            <span class="keyword">throw</span> me;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/05/GitBlogTheme/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          GitLog Config And Publish
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaExceptionNote" data-title="Java异常概述" data-url="http://yoursite.com/2016/04/05/JavaExceptionNote/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"denial"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Denial Liu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
